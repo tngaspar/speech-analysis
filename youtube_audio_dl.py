@@ -31,4 +31,4 @@ def youtube_audio_download(urls, audio_format='wav'):
         }]
     }
     ytdl = YoutubeDL(ytdl_options)
-    return ytdl.download(urls)
+    ytdl.download(urls)
