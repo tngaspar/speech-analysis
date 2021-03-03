@@ -25,7 +25,7 @@ def youtube_audio_download(urls, audio_format='wav'):
         'format': 'bestaudio/best',
         'extractaudio':True,
         'audioformat':audio_format,
-        'outtmpl':u'data/raw_audio/%(id)s.%(ext)s',
+        'outtmpl':'data/raw_audio/%(id)s.%(ext)s',
         'noplaylist':True,
         'nockeckcertificate':True,
         'postprocessors':[{
