@@ -6,6 +6,14 @@ import shutil
 
 
 def get_text_from_audio(path):
+    """Returns speech in str format from an inputh of a path to a .wav audio file
+
+    Args:
+        path (str): string of a path to a .wav audio file
+
+    Returns:
+        str: Full text of speech from audio file
+    """
 
     # initialize speech recon engine
     r = sr.Recognizer()
