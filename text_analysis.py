@@ -2,6 +2,8 @@ import re
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.util import ngrams
+from collections import Counter
 
 
 def filter_text(text):

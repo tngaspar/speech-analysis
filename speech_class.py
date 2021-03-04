@@ -5,6 +5,8 @@ import text_analysis
 import os
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+from nltk.util import ngrams as nltk_ngrams
+from collections import Counter
 
 class speech:
     def __init__(self, text=None):
@@ -85,3 +87,22 @@ class speech:
             plt.show()
         
         return wcloud
+    
+    
+    def ngrams(self, n):
+        """Returns dictionary of ngrams repeated more than 2 times
+
+        Args:
+            n (int): n in ngram
+
+        Returns:
+            dict: dictionary of ngrams
+        """
+        
+        # get the dict
+        ngram_dict = dict(Counter(nltk_ngrams(self.filtered_text.split(), n)))
+
+        # remove ngrams with only one ocurrence
+        ngram_dict = {key:value for key, value in ngram_dict.items() if value != 1}   
+       
+        return ngram_dict    
