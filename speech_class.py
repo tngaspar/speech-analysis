@@ -17,13 +17,28 @@ class speech:
         
         self.filtered_text = text_analysis.filter_text(text)
                 
-    #only taking 1 file 
     @classmethod
-    def from_wav(cls, file_path):
-        text = audio_to_text.get_text_from_audio(file_path)
+    def from_wav(cls, files_paths):
+        """Returns speech in string form
+
+        Args:
+            files_paths (str or list(str)): paths to .wav files
+
+        Returns:
+            str: speech in txt form
+        """
+        
+        # if files_paths is str tranform into list(str)
+        if isinstance(files_paths, str):
+            files_paths = [files_paths]
+        
+        # audio to text              
+        text = ""
+        for path in files_paths:
+            text += audio_to_text.get_text_from_audio(path) + " "
+        
         return cls(text)
 
-    #only taking 1 url
     @classmethod
     def from_youtube(cls, urls):
         """Returns text from youtube videos
