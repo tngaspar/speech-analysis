@@ -25,16 +25,33 @@ class speech:
 
     #only taking 1 url
     @classmethod
-    def from_youtube(cls, url):
-        youtube_audio_dl.youtube_audio_download(url)
+    def from_youtube(cls, urls):
+        """Returns text from youtube videos
 
+        Args:
+            urls (str or list(str)): str of the url of a video or list of multiple videos
+
+        Returns:
+            str: returns str of speech recognized
+        """
+        youtube_audio_dl.youtube_audio_download(urls)
+        
+        # case only 1 video passed as str
+        if isinstance(urls, str):
+            urls = [urls]
+            
         # getting video id from link and getting file path
-        url_data = urlparse.urlparse(url)
-        video_id = urlparse.parse_qs(url_data.query)["v"][0]
-        file_path = 'data/raw_audio/'+video_id+'.wav'
+        files_paths = []
+        for url in urls:
+            url_data = urlparse.urlparse(url)
+            video_id = urlparse.parse_qs(url_data.query)["v"][0]
+            files_paths.append('data/raw_audio/'+video_id+'.wav')
         
         # speech recongition
-        text = audio_to_text.get_text_from_audio(file_path)
+        text = ""
+        for path in files_paths:
+            text += audio_to_text.get_text_from_audio(path) + " "
+        
         return cls(text)
 
     
