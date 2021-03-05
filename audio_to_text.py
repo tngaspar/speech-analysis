@@ -56,6 +56,15 @@ def get_text_from_audio(path):
     except OSError as e:
         
         print(f"Error: {folder_name}: {e.strerror}")
+        
+    # write video full text to txt
+    txt_folder = "data/raw_text/"
+    txt_filename = os.path.splitext(os.path.basename(path))[0] + ".txt"
+    if not os.path.isdir(txt_folder):
+        os.mkdir(txt_folder)
     
+    with open(txt_folder + txt_filename, "w") as txt:
+        txt.write(full_text)
+
     #return the full speech in a str     
     return full_text
