@@ -1,7 +1,5 @@
-import audio_to_text
-import youtube_audio_dl
+from . import audio_to_text, youtube_audio_dl, text_analysis
 import urllib.parse as urlparse
-import text_analysis
 import os
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
