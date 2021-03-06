@@ -119,7 +119,7 @@ class speech:
         return wcloud
     
     
-    def ngrams(self, n):
+    def ngrams(self, n, min_repetitions=2):
         """Returns dictionary of ngrams repeated more than 2 times
 
         Args:
@@ -133,6 +133,6 @@ class speech:
         ngram_dict = dict(Counter(nltk_ngrams(self.filtered_text.split(), n)))
 
         # remove ngrams with only one ocurrence
-        ngram_dict = {key:value for key, value in ngram_dict.items() if value != 1}   
+        ngram_dict = {key:value for key, value in ngram_dict.items() if value >= min_repetitions}   
        
         return ngram_dict    
